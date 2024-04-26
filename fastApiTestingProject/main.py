@@ -4,10 +4,13 @@ import uvicorn
 from fastapi import FastAPI
 from loguru import logger
 
+from notes.src.api import api_router
+
 
 def init_app() -> FastAPI:
     """Create FastAPI app."""
     app = FastAPI()
+    app.include_router(api_router)
 
     @app.on_event("startup")
     async def startup() -> None:
