@@ -27,7 +27,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:init_app",
         host=os.getenv("NOTES_APP_HOST", "0.0.0.0"),
-        port=int(os.getenv("NOTES_APP_PORT", 8008)),
+        port=int(os.getenv("NOTES_APP_PORT", 8000)),
         reload=True,
         factory=True,
     )

@@ -4,13 +4,13 @@ from sqlalchemy import UUID, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from common.packages.src.db.base import BaseModel
-from common.packages.src.db.mixins import TimestampMixin, UUIDMixin
+from common.packages.src.db.mixins import TimestampMixin, UUIDMixin, DeletableMixin
 
 if TYPE_CHECKING:
     from common.packages.src.db.models import User
 
 
-class Note(BaseModel, UUIDMixin, TimestampMixin):
+class Note(BaseModel, UUIDMixin, TimestampMixin, DeletableMixin):
     """Model definition."""
 
     __tablename__ = "store_item"
@@ -19,4 +19,3 @@ class Note(BaseModel, UUIDMixin, TimestampMixin):
     description: Mapped[str] = mapped_column(Text)
     user_id: Mapped[str | None] = mapped_column(UUID, ForeignKey("user.uuid"))
     user: Mapped["User"] = relationship(foreign_keys="Note.user_id", lazy="selectin")
-

@@ -24,3 +24,11 @@ class UpdateMixin:
 
     updated_by: Mapped[Optional[str]] = mapped_column(ForeignKey("user.uuid"))
 
+
+class DeletableMixin:
+    """Deletable Mixin."""
+
+    is_deleted: Mapped[bool] = mapped_column(default=False, server_default="f")
+    deleted_at: Mapped[Optional[datetime]]
+    deleted_by: Mapped[Optional[str]] = mapped_column(ForeignKey("user.uuid"))
+
